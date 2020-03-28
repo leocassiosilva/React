@@ -5,7 +5,7 @@ class User extends Component {
     render() {
         return ( < div >
             Nome: { this.props.name }
-            Foto: < img src = { this.props.photo }
+            Email: { this.props.email }
             />  </div >
         );
     }

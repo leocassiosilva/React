@@ -1,54 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Link, Route } from 'react-router-dom'
 import './App.css';
-import Leocassio from './Leocassio'
+import routesConfig from './routesConfig';
 
 class App extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: "Leocassio",
-            email: "leocassiosilva1234@gmail.com"
-        }
-        this.changeState = this.changeState.bind(this)
-        this.resetState = this.resetState.bind(this)
-        this.changeInput = this.changeInput.bind(this)
 
-    }
-    changeState() {
-        this.setState({
-            name: "Leocassio Silva"
-        })
-    }
-    resetState(event) {
-        let target = event.target
-        let index = target.name
-        this.setState({
-            [index]:target.value
-        })
-    }
-
-    changeInput() {
-        this.setState({
-            name: "Leocassio Silva"
-        })
-    }
-  render (){
-      return (
-          <div className="App">
-              <div>
-              <form>
-            <label>Nome</label>
-            <input type="text" name="name" value={this.state.name} onChange={this.changeInput}></input>
-             <label>Email</label>
-            <input type="email" name="email" value= {this.state.email} onChange={this.changeInput}></input>
-        </form>
-        {this.state.name} - {this.state.email}
-              </div>
-            <button onClick = { this.changeState } > Mudar Estado </button> 
-            <button onClick = { this.resetState } > Resetar Estado </button> 
-          </div>
-      );
+  render() {
+    return (
+      <div>
+        <div className="App">
+          <Link to="/" >Home</Link>
+          <Link to="/user" >User</Link>
+        </div>
+        {routesConfig.map((value, key) => {
+          return <Route
+            key={key}
+            path={value.path}
+            component={value.component}
+            exact={value.exact}
+          ></Route>
+        })}
+      </div>
+    );
   }
 }
 
